@@ -1,7 +1,7 @@
 import Counter from "./features/counter/counter";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RootLayout } from "./components";
-import PostList from "./features/posts/PostList";
+import { PostList, AddPostForm } from "./features/posts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -10,6 +10,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <PostList />,
+      },
+      {
+        path: "/createpost",
+        element: <AddPostForm />,
       },
       {
         path: "/counter",

@@ -18,6 +18,16 @@ const MainNav = () => {
           </li>
           <li>
             <NavLink
+              to="/createpost"
+              className={({ isActive }) =>
+                isActive ? "underline text-yellow-400" : "hover:underline"
+              }
+            >
+              Create
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/counter"
               className={({ isActive }) =>
                 isActive ? "underline text-yellow-400" : "hover:underline"
@@ -26,6 +36,7 @@ const MainNav = () => {
               Counter
             </NavLink>
           </li>
+
           <li>
             <NavLink
               to="/about"
