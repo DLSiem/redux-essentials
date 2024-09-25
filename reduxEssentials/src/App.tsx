@@ -1,14 +1,26 @@
+import Counter from "./features/counter/counter";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RootLayout } from "./components";
+import PostList from "./features/posts/PostList";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <PostList />,
+      },
+      {
+        path: "/counter",
+        element: <Counter />,
+      },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <>
-      <p>
-        The sample project we'll look at is a small counter application that
-        lets us add or subtract from a number as we click buttons. It may not be
-        very exciting, but it shows all the important pieces of a React+Redux
-        application in action.
-      </p>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
