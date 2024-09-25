@@ -32,7 +32,7 @@ const EditPostForm = () => {
     console.log(title, content);
 
     if (title && content) {
-      dispatch(postUpdated({ id: post.id, title, content, user: post.user }));
+      dispatch(postUpdated({ id: post.id, title, content }));
       navigate(`/posts/${postId}`);
     }
   };

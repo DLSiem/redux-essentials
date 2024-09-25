@@ -3,3 +3,4 @@ export { default as PostList } from "./PostList";
 export { default as SinglePostPage } from "./SinglePostPage";
 export { default as EditPostForm } from "./EditPostForm";
 export { default as PostAuthor } from "./PostAuthor";
+export { default as ReactionButtons } from "./ReactionButtons";

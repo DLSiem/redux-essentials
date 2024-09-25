@@ -8,8 +8,11 @@ interface PostAuthorProps {
 const PostAuthor = ({ userId }: PostAuthorProps) => {
   const author = useAppSelector((state) => selectUserById(state, userId));
   return (
-    <span className="text-sm text-gray-500 italic">
-      by {author ? author.name : "Unknown author"}
+    <span className="text-sm text-gray-500 ">
+      by{" "}
+      <span className="font-semibold">
+        {author ? author.name : "Unknown author"}
+      </span>
     </span>
   );
 };
