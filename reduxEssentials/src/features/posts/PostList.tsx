@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 
 const PostList = () => {
@@ -7,7 +8,9 @@ const PostList = () => {
       key={post.id}
       className="bg-white shadow-md rounded-lg p-6 mb-6 border hover:shadow-lg transition-shadow"
     >
-      <h2 className="text-xl font-bold mb-2 text-gray-800">{post.title}</h2>
+      <h2 className="text-xl font-bold mb-2 text-gray-800 hover:text-gray-500 ">
+        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+      </h2>
       <p className="text-gray-600">{post.content.substring(0, 100)}...</p>
     </article>
   ));
