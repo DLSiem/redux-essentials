@@ -1,12 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { nanoid } from "@reduxjs/toolkit";
-import { useAppDispatch } from "../../app/hooks";
-
-import { type Post, postAdded } from "./postsSlice";
+// import { useNavigate } from "react-router-dom";
+// import { nanoid } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectAllUsers } from "../users/userSlice";
+import { postAdded } from "./postsSlice";
 
 interface AddPostFormFields extends HTMLFormControlsCollection {
   postTitle: HTMLInputElement;
+  postAuthor: HTMLSelectElement;
   postContent: HTMLTextAreaElement;
 }
 
@@ -16,24 +17,26 @@ interface AddPostFormElements extends HTMLFormElement {
 
 const AddPostForm = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const users = useAppSelector(selectAllUsers);
+  //   const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<AddPostFormElements>) => {
     event.preventDefault();
     const { elements } = event.currentTarget;
     const title = elements.postTitle.value;
     const content = elements.postContent.value;
-    console.log(title, content);
+    const user = elements.postAuthor.value;
 
-    const newPost: Post = {
-      id: nanoid(),
-      title,
-      content,
-    };
-
-    dispatch(postAdded(newPost));
+    dispatch(postAdded(title, content, user));
     event.currentTarget.reset();
-    navigate(`/posts/${newPost.id}`);
+    // navigate(`/`);
   };
+
+  const usersOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ));
+
   return (
     <section className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900">
@@ -49,6 +52,24 @@ const AddPostForm = () => {
         >
           Post Title:
         </label>
+        <label
+          htmlFor="postAuthor"
+          className="block text-gray-700 font-medium mb-2"
+        >
+          Author:
+        </label>
+        <select
+          id="postAuthor"
+          name="postAuthor"
+          required
+          className="w-full border border-gray-300 rounded-md mb-4 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <option value="" disabled>
+            Select an author
+          </option>
+          {usersOptions}
+        </select>
+
         <input
           type="text"
           name="postTitle"

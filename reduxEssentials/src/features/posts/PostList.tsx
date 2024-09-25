@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectAllPosts } from "./postsSlice";
+import { PostAuthor } from ".";
 
 const PostList = () => {
   const posts = useAppSelector(selectAllPosts);
   const renderPosts = posts.map((post) => (
     <article
       key={post.id}
-      className="bg-white shadow-md rounded-lg p-6 mb-6 border hover:shadow-lg transition-shadow"
+      className="bg-white shadow-md rounded-lg p-6 mb-6 border border-gray-200 hover:shadow-lg transition-shadow"
     >
-      <h2 className="text-xl font-bold mb-2 text-gray-800 hover:text-gray-500 ">
+      <h2 className="text-xl font-bold mb-2 text-gray-800 hover:text-gray-500 transition-colors">
         <Link to={`/posts/${post.id}`}>{post.title}</Link>
       </h2>
-      <p className="text-gray-600">{post.content.substring(0, 100)}...</p>
+      <p className="text-gray-600 mb-4">{post.content.substring(0, 100)}...</p>
+      <div className="text-sm text-gray-500">
+        <PostAuthor userId={post.user} />
+      </div>
     </article>
   ));
 

@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../app/hooks";
 import { useParams, Link } from "react-router-dom";
 import { selectPostById } from "./postsSlice";
+import PostAuthor from "./PostAuthor";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
@@ -17,6 +18,9 @@ const SinglePostPage = () => {
           <h2 className="text-3xl font-bold mb-4 text-gray-900">
             {post.title}
           </h2>
+          <div className="text-sm text-gray-500 mb-4">
+            <PostAuthor userId={post.user} />
+          </div>
           {/* edit button */}
           <p className="text-right text-sm text-gray-600 hover:text-indigo-600 transition-colorsduration-300mb-4">
             <Link

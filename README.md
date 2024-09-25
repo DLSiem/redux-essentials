@@ -1,6 +1,6 @@
 # Redux-Essentials
 
-### This repo is for tracking learning from redux essentials tutorials
+### This repo is to track learning from redux essentials tutorials
 
 ## Vite Redux Template
 
