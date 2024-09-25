@@ -48,15 +48,24 @@ const AddPostForm = () => {
       >
         <label
           htmlFor="postTitle"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 text-center font-medium mb-2"
         >
-          Post Title:
+          Post Title
         </label>
+
+        <input
+          type="text"
+          name="postTitle"
+          id="postTitle"
+          defaultValue=""
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
         <label
           htmlFor="postAuthor"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-center text-gray-700 font-medium mb-2"
         >
-          Author:
+          Author
         </label>
         <select
           id="postAuthor"
@@ -69,20 +78,11 @@ const AddPostForm = () => {
           </option>
           {usersOptions}
         </select>
-
-        <input
-          type="text"
-          name="postTitle"
-          id="postTitle"
-          defaultValue=""
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
         <label
           htmlFor="postContent"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 text-centers font-medium mb-2"
         >
-          Content:
+          Content
         </label>
         <textarea
           id="postContent"

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
+import { selectCurrentUsername } from "../auth/authSlice";
 
 // Define a type for the slice state
 interface User {
@@ -31,3 +32,9 @@ export const selectAllUsers = (state: RootState) => state.users;
 
 export const selectUserById = (state: RootState, userId: string | null) =>
   state.users.find((user) => user.id === userId);
+
+export const selectCurrentUser = (state: RootState) => {
+  const currentUserName = selectCurrentUsername(state);
+
+  return selectUserById(state, currentUserName);
+};

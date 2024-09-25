@@ -7,6 +7,18 @@ import {
   SinglePostPage,
   EditPostForm,
 } from "./features/posts";
+
+import { LoginPage } from "./features/auth";
+import { useAppSelector } from "./app/hooks";
+
+import { selectCurrentUsername } from "./features/auth/authSlice";
+
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const authUsername = useAppSelector(selectCurrentUsername);
+
+  return authUsername ? children : <LoginPage />;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,12 +34,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/editpost/:postId",
-        element: <EditPostForm />,
+        element: (
+          <ProtectedRoute>
+            <EditPostForm />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/createpost",
-        element: <AddPostForm />,
+        element: (
+          <ProtectedRoute>
+            <AddPostForm />
+          </ProtectedRoute>
+        ),
       },
+      {
+        path: "/auth/login",
+        element: <LoginPage />,
+      },
+
       {
         path: "/counter",
         element: <Counter />,
