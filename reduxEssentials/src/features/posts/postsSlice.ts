@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { sub } from "date-fns";
+import { userLoggedOut } from "../auth/authSlice";
 
 // types for reactions
 export interface Reactions {
@@ -96,6 +97,12 @@ const postsSlice = createSlice({
         existingPost.reactions[reaction]++;
       }
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(userLoggedOut, () => {
+      return [];
+    });
   },
 });
 
