@@ -1,11 +1,10 @@
 import { useAppSelector } from "../../app/hooks";
 import { useParams, Link } from "react-router-dom";
+import { selectPostById } from "./postsSlice";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
-  const post = useAppSelector((state) =>
-    state.posts.find((post) => post.id === postId)
-  );
+  const post = useAppSelector((state) => selectPostById(state, postId!)); // ! to tell TS that postId is not null
 
   return (
     <section className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
